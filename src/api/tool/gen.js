@@ -1,62 +1,65 @@
 import request from '@/utils/request'
 
-// 查询生成表数据
-export function listTable(query) {
+// 查询当天历史通信记录
+export function getlistHistory(query) {
   return request({
-    url: '/tool/gen/list',
-    method: 'get',
-    params: query
-  })
-}
-// 查询db数据库列表
-export function listDbTable(query) {
-  return request({
-    url: '/tool/gen/db/list',
+    url: '/communication/log/history',
     method: 'get',
     params: query
   })
 }
 
-// 查询表详细信息
-export function getGenTable(tableId) {
+//接受通话记录
+export function receiveCommunication(data) {
   return request({
-    url: '/tool/gen/' + tableId,
-    method: 'get'
-  })
-}
-
-// 修改代码生成信息
-export function updateGenTable(data) {
-  return request({
-    url: '/tool/gen',
-    method: 'put',
+    url: '/communication/receive',
+    method: 'post',
     data: data
   })
 }
 
-// 导入表
-export function importTable(data) {
+//查询跑道状态信息
+export function getrunwayStatus(query) {
   return request({
-    url: '/tool/gen/importTable',
-    method: 'post',
-    params: data
+    url: '/runway/status',
+    method: 'get',
+    params: query
   })
 }
 
-// 创建表
-export function createTable(data) {
+//获取视频直播流路径
+export function getvideoUrl(query) {
   return request({
-    url: '/tool/gen/createTable',
-    method: 'post',
-    params: data
+    url: '/video/url',
+    method: 'get',
+    params: query
   })
 }
 
-// 预览生成代码
-export function previewTable(tableId) {
+// 修改跑道状态信息
+export function updaterunwayStatus(data) {
   return request({
-    url: '/tool/gen/preview/' + tableId,
-    method: 'get'
+    url: '/status/modify',
+    method: 'post',
+    data: data
+  })
+}
+
+// 导入第二天航班信息
+export function importcreateTable(data) {
+  return request({
+    url: '/flight/import',
+    method: 'post',
+    data: data
+  })
+}
+
+//筛选通信记录
+export function changeRecordList(query) {
+  return request({
+    url: '/communication/log/list',
+    method: 'get',
+    params: query
   })
 }
 
@@ -68,18 +71,4 @@ export function delTable(tableId) {
   })
 }
 
-// 生成代码（自定义路径）
-export function genCode(tableName) {
-  return request({
-    url: '/tool/gen/genCode/' + tableName,
-    method: 'get'
-  })
-}
 
-// 同步数据库
-export function synchDb(tableName) {
-  return request({
-    url: '/tool/gen/synchDb/' + tableName,
-    method: 'get'
-  })
-}

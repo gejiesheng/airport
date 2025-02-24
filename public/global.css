@@ -1,0 +1,10 @@
+.el-message {
+  background-color: #09426e !important;
+  border: none !important;
+  .el-icon{
+    display: none;
+  }
+}
+.el-message__content {
+  color: #ffffff !important;
+}

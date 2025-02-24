@@ -1,15 +1,14 @@
 <template>
-  <router-view />
+  <index />
 </template>
 
 <script setup>
-import useSettingsStore from '@/store/modules/settings'
-import { handleThemeStyle } from '@/utils/theme'
+import { useRoute } from 'vue-router'
+import index from './views/index.vue'
+const route = useRoute()
 
-onMounted(() => {
-  nextTick(() => {
-    // 初始化主题样式
-    handleThemeStyle(useSettingsStore().theme)
-  })
-})
 </script>
+
+
+<style>
+</style>

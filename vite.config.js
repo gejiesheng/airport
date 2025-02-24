@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
 import createVitePlugins from './vite/plugins'
 
+
 // https://vitejs.dev/config/
 export default defineConfig(({ mode, command }) => {
   const env = loadEnv(mode, process.cwd())
@@ -30,12 +31,19 @@ export default defineConfig(({ mode, command }) => {
       open: true,
       proxy: {
         // https://cn.vitejs.dev/config/#server-proxy
-        '/dev-api': {
-          target: 'http://localhost:8080',
+        '/prod-api': {
+          target: 'http://192.168.1.59:9120',
           changeOrigin: true,
-          rewrite: (p) => p.replace(/^\/dev-api/, '')
+          rewrite: (p) => p.replace(/^\/prod-api/, '')
         }
       }
+    },
+    build: {
+      rollupOptions: {
+        input: {
+          main: 'index.html',
+        },
+      },
     },
     //fix:error:stdin>:7356:1: warning: "@charset" must be the first rule in the file
     css: {
